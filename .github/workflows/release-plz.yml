@@ -38,8 +38,8 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.repository_owner == 'johnstonskj' }}
     permissions:
-      pull-requests: write
       contents: write
+      pull-requests: write
     concurrency:
       group: release-plz-${{ github.ref }}
       cancel-in-progress: false

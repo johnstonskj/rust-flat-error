@@ -1,4 +1,6 @@
 name: Rust build and test
+permissions:
+  contents: read
 
 on:
   pull_request:
