@@ -17,6 +17,3 @@ pr_labels = ["release"]
 allow_dirty = false
 publish_allow_dirty = false
 semver_check = false
-
-[changelog]
-protect_breaking_commits = true
