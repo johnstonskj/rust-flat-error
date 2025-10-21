@@ -11,22 +11,75 @@ Simple Error wrapper to ensure Clone, Debug, and PartialEq.
 [![docs.rs](https://docs.rs/xml_dom/badge.svg)](https://docs.rs/flat_error)
 [![GitHub stars](https://img.shields.io/github/stars/johnstonskj/rust-flat-error.svg)](<https://github.com/johnstonskj/rust-flat-error/stargazers>)
 
-Add a longer description here.
+In general it is recommended that error types implement not just [`Error`] and it's required [`Display`], but also
+[`Clone`], [`Debug`], and [`PartialEq`] although [`Eq`] is optional. Beyond these additional traits are added as
+normal such as `Copy`, `PartialOrd`, `Ord`, `Hash`, etc.
+
+However, there are a number of error types in the standard library, and many more in commonly used traits that do
+not meet this requirement. This simple crate introduces a new trait, [`ExtendedError`], which provides these additional
+requirements and a new concrete type, [`FlatError`] which provides a way to capture existing errors such that they
+meet these requirements.
 
 ## Example
 
-TBD
+The following demonstrates a new type that meets the requirements of `ExtendedError`.
 
 ```rust
+use std::{
+    error::Error,
+    fmt::{Display, Formatter, Result as FmtResult},
+};
+
+#[derive(Clone, Debug, PartialEq)]
+pub struct MyError;
+
+impl Display for MyError {
+    fn fmt(&self, f: &mut Formatter<'_>) -> FmtResult {
+        write!(f, "MyError")
+    }
+}
+
+impl Error for MyError {}
+```
+
+However, the following fails because the error in `std::io` does not implement either `Clone` or `PartialEq`.
+
+```rust,compile_fail
+use std::{
+    error::Error,
+    fmt::{Display, Formatter, Result as FmtResult},
+    io::Error as IoError,
+};
+
+#[derive(Clone, Debug, PartialEq)]
+pub enum MyError {
+    Io(IoError), // <= this doesn't work.
+}
+```
+
+`FlatError` allows the capture and *flattening* of these errors into `MyError`, as shown below. This does however lose
+the ability to access any specific methods on the flattened error such as `last_os_error` on `std::io::Error`.
+
+```rust
+use flat_error::FlatError;
+use std::{
+    error::Error,
+    fmt::{Display, Formatter, Result as FmtResult},
+    io::Error as IoError,
+};
+
+#[derive(Clone, Debug, PartialEq)]
+pub enum MyError {
+    Io(FlatError),
+}
 ```
 
 ## Features
 
-| Name | Dependencies | Description |
-+--------------------+--------------------------------+------------------------------------------------------------------------+
-| *default* | std, tracing | Package default features.                                              |
-| std       | alloc                          | Enables the `std` library crate, the most common default.              |
-| alloc     |                                | Enables the `alloc` library crate, required in a `no_std` environment. |
+| Name    | Dependencies | Description                                                            |
+|---------|--------------|------------------------------------------------------------------------|
+| `std`   | `alloc`      | Enables the `std` library crate, the most common default.              |
+| `alloc` |              | Enables the `alloc` library crate, required in a `no_std` environment. |
 
 ## License(s)
 
