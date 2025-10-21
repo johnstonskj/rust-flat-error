@@ -10,9 +10,17 @@ See [conventional commits](https://www.conventionalcommits.org/) for commit guid
 
 - remove unknown features from rust ci - ([de474a3](https://github.com/johnstonskj/rust-flat-error/commit/de474a3a6644b336b961d1bc6719972c140a3bff)) - Simon Johnston
 
+### Documentation
+
+- updated change log - ([0d7ae8d](https://github.com/johnstonskj/rust-flat-error/commit/0d7ae8db32d9e75cad73e4ff5e9200fb6739a48a)) - Simon Johnston
+
 ### Features
 
 - changelog automation - ([da1799a](https://github.com/johnstonskj/rust-flat-error/commit/da1799acf8b967292943f027a78adb7331718687)) - Simon Johnston
+
+### Build
+
+- **(ci)** add release-plz - ([9be555a](https://github.com/johnstonskj/rust-flat-error/commit/9be555ad5e2bb9f596c7a118dd3da1a6abb86265)) - Simon Johnston
 
 ---
 ## Version [0.1.0] - 2025-10-21
