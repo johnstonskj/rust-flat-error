@@ -1,0 +1,43 @@
+[package]
+authors = ["Simon Johnston <johnstonskj@gmail.com>"]
+name = "flat_error"
+version = "0.1.0"
+description = """Simple Error wrapper to ensure Clone, Debug, and PartialEq."""
+documentation = "https://docs.rs/flat_error/"
+repository = "https://github.com/johnstonskj/rust-flat-error.git"
+license = "MIT/Apache-2.0"
+readme = "README.md"
+edition = "2021"
+publish = true
+
+[package.metadata.docs.rs]
+# This sets the default target to `x86_64-unknown-linux-gnu`
+# and only builds that target for documentation.
+targets = ["x86_64-unknown-linux-gnu"]
+
+[features]
+default = ["std"]
+std = ["alloc"]
+alloc = []
+
+[dependencies]
+
+[dev-dependencies]
+pretty_assertions = "1.4.1"
+
+# Uncomment for the #[serial] and #[parallel] marker attributes to add to
+# tests to manage concurrency where required.
+# serial_test = "3.2.0"
+
+# Uncomment for a replacement of the #[test] attribute that initializes 
+# logging and/or tracing infrastructure before running tests.
+# test-log = "0.2.18"
+
+# Uncomment for additional assertion macros for testing. For example,
+# assert_ge, assert_ok, assert_some, assert_pending, etc.
+# claims = "0.8.0"
+
+# The profile that 'cargo dist' will build with
+[profile.dist]
+inherits = "release"
+lto = "thin"
