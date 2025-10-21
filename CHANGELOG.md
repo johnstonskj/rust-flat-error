@@ -13,6 +13,8 @@ See [conventional commits](https://www.conventionalcommits.org/) for commit guid
 ### Documentation
 
 - updated change log - ([0d7ae8d](https://github.com/johnstonskj/rust-flat-error/commit/0d7ae8db32d9e75cad73e4ff5e9200fb6739a48a)) - Simon Johnston
+- updated change log - ([31a5dad](https://github.com/johnstonskj/rust-flat-error/commit/31a5dad3c06e7cb33d76ff5ce4a81d341d0b1a8f)) - Simon Johnston
+- added description/examples to readme - ([f1bae1d](https://github.com/johnstonskj/rust-flat-error/commit/f1bae1d36159388ed6f9c26e6518384596448c89)) - Simon Johnston
 
 ### Features
 
@@ -21,6 +23,7 @@ See [conventional commits](https://www.conventionalcommits.org/) for commit guid
 ### Build
 
 - **(ci)** add release-plz - ([9be555a](https://github.com/johnstonskj/rust-flat-error/commit/9be555ad5e2bb9f596c7a118dd3da1a6abb86265)) - Simon Johnston
+- disable wasm/no_std tests for now - ([849d5c2](https://github.com/johnstonskj/rust-flat-error/commit/849d5c263441078a8b42bdb3234be5887109b711)) - Simon Johnston
 
 ---
 ## Version [0.1.0] - 2025-10-21

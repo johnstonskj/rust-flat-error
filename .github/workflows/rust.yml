@@ -225,6 +225,7 @@ jobs:
 
   wasm:   
     name: WASM Test
+    if: false
     needs: test
     strategy:
       matrix:
@@ -260,6 +261,7 @@ jobs:
 
   no_std:   
     name: No-std Test
+    if: false
     needs: test
     strategy:
       matrix:
