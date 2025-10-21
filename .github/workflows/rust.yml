@@ -314,7 +314,7 @@ jobs:
       uses: actions-rs/cargo@v1
       with:
         command: doc
-        args: --verbose --workspace --no-default-features --features std,fmt,repr-array,repr-base64,repr-string,repr-dump --no-deps
+        args: --verbose --workspace --no-deps
 
 
   publish:
