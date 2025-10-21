@@ -38,7 +38,10 @@ fn test_my_error_as_flat() {
 #[test]
 fn test_my_error_as_flat_alt() {
     let err = FlatError::from_any(&MyError);
-    assert_eq!(format!("{:#}", err), "MyError! (original type: `test_lib::MyError`)".to_string());
+    assert_eq!(
+        format!("{:#}", err),
+        "MyError! (original type: `test_lib::MyError`)".to_string()
+    );
 }
 
 #[test]

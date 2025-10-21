@@ -1,5 +1,5 @@
 /*!
-Simple Error wrapper to ensure Clone, Debug, and PartialEq..
+Simple Error wrapper to ensure Clone, Debug, and PartialEq.
 
 In general it is recommended that error types implement not just [`Error`] and it's required [`Display`], but also
 [`Clone`], [`Debug`], and [`PartialEq`] although [`Eq`] is optional. Beyond these additional traits are added as
@@ -48,7 +48,7 @@ pub enum MyError {
 ```
 
 `FlatError` allows the capture and *flattening* of these errors into `MyError`, as shown below. This does however lose
-the ability to access any specific methods on the flattened error such as `last_os_error` on `std::io::Error`. 
+the ability to access any specific methods on the flattened error such as `last_os_error` on `std::io::Error`.
 
 ```rust
 use flat_error::FlatError;
@@ -188,12 +188,18 @@ impl<E: Error + Clone + Debug + PartialEq> ExtendedError for E {}
 // ------------------------------------------------------------------------------------------------
 
 impl Display for FlatError {
+    #[allow(clippy::format_in_format_args)]
     fn fmt(&self, f: &mut Formatter<'_>) -> FmtResult {
         if f.alternate() {
-            write!(f, "{} ({}{})",
-                   self.message,
-                   self.source.as_ref().map(|e|format!("source: {e}, ")).unwrap_or_default(),
-                   format!("original type: `{}`", self.original_type_name),
+            write!(
+                f,
+                "{} ({}{})",
+                self.message,
+                self.source
+                    .as_ref()
+                    .map(|e| format!("source: {e}, "))
+                    .unwrap_or_default(),
+                format!("original type: `{}`", self.original_type_name),
             )
         } else {
             write!(f, "{}", self.message)
