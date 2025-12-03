@@ -231,6 +231,14 @@ impl FlatError {
         }
     }
 
+    pub fn new<S: Into<String>>(original_type_name: &'static str, message: S) -> Self {
+        Self {
+            original_type_name,
+            message: message.into(),
+            source: None,
+        }
+    }
+
     ///
     /// A concrete version of `Error::source` that returns the flattened source.
     ///
