@@ -1,7 +1,9 @@
 use flat_error::FlatError;
 use pretty_assertions::assert_eq;
 use std::{
-    any::type_name, error::Error, fmt::{Display, Formatter, Result as FmtResult}
+    any::type_name,
+    error::Error,
+    fmt::{Display, Formatter, Result as FmtResult},
 };
 
 // ------------------------------------------------------------------------------------------------
